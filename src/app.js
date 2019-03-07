@@ -7,12 +7,14 @@ const geocode = require('./utils/geocode')
 // start app with node(mon) src/app.js -e js,hbs 
 // -e = extension flag
 
-// current directory
-console.log(__dirname)
-// point to public folder in webserver folder
-console.log(path.join(__dirname, '../public'))
+// // current directory
+// console.log(__dirname)
+// // point to public folder in webserver folder
+// console.log(path.join(__dirname, '../public'))
 
 const app = express()
+// or operator so that if heroku port isn't available locally, it'll run on localhost:3000
+const port = process.env.PORT || 3000
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -107,7 +109,7 @@ app.get('*', (req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('Server is up on port 3000.')
+app.listen(port, () => {
+    console.log('Server is up on port ' + port)
 })
 
